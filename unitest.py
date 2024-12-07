@@ -14,7 +14,7 @@ class TestFraction(unittest.TestCase):
         self.assertEqual(f2.numerator, -4, "Test denominator negatif")
         self.assertEqual(f2.denominator, 3, "Test denominator negatif")
 
-        self.assertRaises(ValueError, Fraction, 2, 0)
+        self.assertRaises(ZeroDivisionError, Fraction, 2, 0)
 
         f3 = Fraction(0, 1)
         self.assertEqual(f3.numerator, 0)
@@ -54,14 +54,17 @@ class TestFraction(unittest.TestCase):
     def test_is_integer(self):
         self.assertTrue(Fraction(4, 2).is_integer())
         self.assertFalse(Fraction(3, 2).is_integer())
+        self.assertTrue(Fraction(-4, 2).is_integer())
 
     def test_is_proper(self):
         self.assertTrue(Fraction(1, 2).is_proper())
         self.assertFalse(Fraction(3, 2).is_proper())
+        self.assertTrue(Fraction(-1, 2).is_proper())
+        self.assertFalse(Fraction(-3, 2).is_proper())
 
     def test_as_mixed_number(self):
         self.assertEqual(Fraction(7, 3).as_mixed_number(), "2 1/3")
-        self.assertEqual(Fraction(3, 2).as_mixed_number(), "1 1/2")
+        self.assertEqual(Fraction(4, 2).as_mixed_number(), "2")
         self.assertEqual(Fraction(-10, 4).as_mixed_number(), "-2 1/2")
 
 
