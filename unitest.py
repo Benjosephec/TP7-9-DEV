@@ -1,5 +1,6 @@
 import unittest
-from Classdesaad import Fraction
+
+from fraction import Fraction
 
 class TestFraction(unittest.TestCase):
 
@@ -14,7 +15,7 @@ class TestFraction(unittest.TestCase):
         self.assertEqual(f2.numerator, -4, "Test denominator negatif")
         self.assertEqual(f2.denominator, 3, "Test denominator negatif")
 
-        self.assertRaises(ZeroDivisionError, Fraction, 2, 0)
+        self.assertRaises(ValueError, Fraction, 2, 0)
 
         f3 = Fraction(0, 1)
         self.assertEqual(f3.numerator, 0)
